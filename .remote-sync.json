@@ -1,0 +1,15 @@
+{
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "empatia-dev.onesource.pt",
+  "target": "/home/carlosgabriel/logs",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "carlosgabriel",
+  "password": "QA09pok",
+  "watch": [],
+  "transport": "scp"
+}
