@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Log;
+use App\One\One;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Tracking;
@@ -91,13 +93,38 @@ class TrackingController extends Controller
 
     public function getTrackingDataByTimeFilter(Request $request){
 
-        $timeFilter = $request->json('timeFilter');
-        $time = Carbon::now()->addDays(-1);
-        $tracking= Tracking::where('created_at','>=',$time)->get();
+        One::verifyToken($request);
 
-        return response()->json($tracking, 200);
+        try{
+            $logList = Log::query();
+            $tableData = $request->input('tableData') ?? null;
+            $recordsTotal = $logList->count();
+            $query = $logList;
 
+            $recordsFiltered = $query->count();
+
+            if(!empty($tableData['start']))
+                $query = $query
+                    ->skip($tableData['start']);
+
+
+            $logs = $query
+                ->take($tableData['length'])
+                ->get();
+
+            $data['logs'] = $logs;
+            $data['recordsTotal'] = $recordsTotal;
+            $data['recordsFiltered'] = $recordsFiltered;
+
+            return response()->json($data, 200);
+        } catch (QueryException $e) {
+            return response()->json(['error' => 'Failed to get Logs'], 500);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Email not Found'], 404);
+        }
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
+
     public function getTrackingData(Request $request){
 
         $id = $request->id;

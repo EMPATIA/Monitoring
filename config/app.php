@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Vinelab\Http\HttpServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
 
         /*Swaggervel*/

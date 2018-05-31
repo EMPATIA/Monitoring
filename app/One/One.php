@@ -209,7 +209,8 @@ class One
                     'vote'          => $components['VOTE'],
                     'wui'           => $components['WUI'],
                     'kiosk'         => $components['KIOSK'],
-                    'events'        => $components['EVENTS']
+                    'events'        => $components['EVENTS'],
+                    'empatia'        => $components['EMPATIA']
 
                 );
 

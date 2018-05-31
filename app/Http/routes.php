@@ -47,6 +47,13 @@ Route::post('TrackingController/updateMessageException', 'TrackingController@upd
 Route::get('log/list', 'LogsController@index');
 Route::resource('log', 'LogsController', ['only' => ['show', 'store']]);
 
+Route::get('access/list', 'AccessesController@index');
+Route::get('access/action', 'AccessesController@action');
+Route::get('access/cb', 'AccessesController@cb');
+Route::resource('access', 'AccessesController');
+
+Route::get('analytics/list', 'AnalyticsController@index');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

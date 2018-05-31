@@ -2,5 +2,6 @@ Homestead.yaml
 Homestead.json
 .env
 .idea
+.vscode
 /nbproject/private/
 /nbproject/
